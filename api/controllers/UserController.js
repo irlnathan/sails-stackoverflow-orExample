@@ -20,15 +20,20 @@ module.exports = {
 
     foo: function(req, res, next) {
 
-        var theScore = req.param('score') || 0;
+        var theScore = req.param('id') || 0;
 
         User.find().where({
 
+            or: [{
+
             score: {
-                '>': parseInt(theScore)
+                '>': parseInt(theScore),
             },
 
-            status: ['admin', 'user']
+            status: 'user'
+            },
+
+          {  status: 'admin'}]
 
         }).exec(function(err, data) {
             if (err) return next(err);
