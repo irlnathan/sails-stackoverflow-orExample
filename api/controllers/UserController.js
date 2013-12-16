@@ -22,6 +22,8 @@ module.exports = {
 
         var theScore = req.param('id') || 0;
 
+        console.log(theScore);
+
         User.find().where({
 
             or: [{
